@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 
-@interface PullToRefreshTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface PullToRefreshTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 	EGORefreshTableHeaderView *refreshHeaderView;
 
 	BOOL _reloading;
@@ -20,6 +20,6 @@
 
 - (void)reloadTableViewDataSource;
 - (void)dataSourceDidFinishLoadingNewData;
-
+- (void) setupRefreshView;
 
 @end
