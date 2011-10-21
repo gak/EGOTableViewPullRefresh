@@ -13,6 +13,7 @@
 @implementation PullToRefreshTableViewController
 @synthesize reloading=_reloading;
 @synthesize refreshHeaderView;
+@synthesize egoTableView;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -21,11 +22,10 @@
 - (void) setupRefreshView {
 
 	 if (refreshHeaderView == nil) {
-         return;
-		 refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, 320.0f, self.tableView.bounds.size.height)];
+		 refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - egoTableView.bounds.size.height, 320.0f, egoTableView.bounds.size.height)];
 		 refreshHeaderView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
 		 refreshHeaderView.bottomBorderThickness = 1.0;
-		 [self.tableView addSubview:refreshHeaderView];
+		 [egoTableView addSubview:refreshHeaderView];
 		 [refreshHeaderView release];
 	 }
  
@@ -53,7 +53,7 @@
 		[refreshHeaderView setState:EGOOPullRefreshLoading];
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
-		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+		egoTableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
 		[UIView commitAnimations];
 	}
 }
@@ -66,7 +66,7 @@
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
-	[self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+	[egoTableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
 	[UIView commitAnimations];
 	
 	[refreshHeaderView setState:EGOOPullRefreshNormal];
