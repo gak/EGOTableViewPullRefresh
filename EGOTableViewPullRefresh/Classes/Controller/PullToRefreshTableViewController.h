@@ -19,8 +19,9 @@
 @property(nonatomic,readonly) EGORefreshTableHeaderView *refreshHeaderView;
 @property(readwrite,retain) UITableView *egoTableView;
 
-- (void)reloadTableViewDataSource;
-- (void)dataSourceDidFinishLoadingNewData;
+- (void) reloadTableViewDataSource;
+- (void) dataSourceDidFinishLoadingNewData;
 - (void) setupRefreshView;
+- (void) forceRefresh;
 
 @end

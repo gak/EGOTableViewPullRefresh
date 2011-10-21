@@ -63,13 +63,20 @@
 - (void)dataSourceDidFinishLoadingNewData{
 	
 	_reloading = NO;
-	
+    
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
 	[egoTableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
 	[UIView commitAnimations];
 	
+    [refreshHeaderView setLastRefreshDate:[NSDate dateWithTimeIntervalSinceNow:0]];
 	[refreshHeaderView setState:EGOOPullRefreshNormal];
+}
+
+- (void) forceRefresh
+{
+    egoTableView.contentOffset = CGPointMake(0, -65);
+    [self scrollViewDidEndDragging:egoTableView willDecelerate:YES];
 }
 
 - (void) reloadTableViewDataSource
