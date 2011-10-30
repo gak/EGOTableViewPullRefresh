@@ -138,30 +138,21 @@ static NSDateFormatter *refreshFormatter;
 
 - (void)setCurrentDate {
 	lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [refreshFormatter stringFromDate:[NSDate date]]];
-//	[[NSUserDefaults standardUserDefaults] setObject:lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
 	    
 	switch (aState) {
 		case EGOOPullRefreshPulling:
-
-            NSLog(@"state: EGOOPullRefreshPulling");
-
 			statusLabel.text = @"Release to refresh...";
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:.18];
 			arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
 			[CATransaction commit];
-			
 			break;
+            
 		case EGOOPullRefreshNormal:
-
-            NSLog(@"state: EGOOPullRefreshNormal");
-
 			if (_state == EGOOPullRefreshPulling) {
-                NSLog(@"laststate: EGOOPullRefreshPulling");
 				[CATransaction begin];
 				[CATransaction setAnimationDuration:.18];
 				arrowImage.transform = CATransform3DIdentity;
@@ -175,40 +166,34 @@ static NSDateFormatter *refreshFormatter;
 			arrowImage.hidden = NO;
 			arrowImage.transform = CATransform3DIdentity;
 			[CATransaction commit];
-			
 			break;
+            
 		case EGOOPullRefreshLoading:
-			
-            NSLog(@"state: EGOOPullRefreshLoading");
 			statusLabel.text = @"Loading...";
 			[activityView startAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
 			arrowImage.hidden = YES;
 			[CATransaction commit];
-			
 			break;
+            
 		case EGOOPullRefreshUpToDate:
-        
-            NSLog(@"state: EGOOPullRefreshUpToDate");
 			statusLabel.text = @"Up-to-date.";
 			[activityView stopAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
 			arrowImage.hidden = YES;
 			[CATransaction commit];
-			
 			break;
+            
 		default:
 			break;
 	}
 	
 	_state = aState;
-    [self setNeedsDisplay];
-
 }
 
-- (void)dealloc {
+- (void) dealloc {
 	[bottomBorderColor release], bottomBorderColor = nil;
 	activityView = nil;
 	statusLabel = nil;
@@ -216,6 +201,5 @@ static NSDateFormatter *refreshFormatter;
 	lastUpdatedLabel = nil;
     [super dealloc];
 }
-
 
 @end
