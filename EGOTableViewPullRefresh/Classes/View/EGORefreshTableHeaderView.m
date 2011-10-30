@@ -143,10 +143,12 @@ static NSDateFormatter *refreshFormatter;
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
-	
+	    
 	switch (aState) {
 		case EGOOPullRefreshPulling:
-			
+
+            NSLog(@"state: EGOOPullRefreshPulling");
+
 			statusLabel.text = @"Release to refresh...";
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:.18];
@@ -155,8 +157,11 @@ static NSDateFormatter *refreshFormatter;
 			
 			break;
 		case EGOOPullRefreshNormal:
-			
+
+            NSLog(@"state: EGOOPullRefreshNormal");
+
 			if (_state == EGOOPullRefreshPulling) {
+                NSLog(@"laststate: EGOOPullRefreshPulling");
 				[CATransaction begin];
 				[CATransaction setAnimationDuration:.18];
 				arrowImage.transform = CATransform3DIdentity;
@@ -174,6 +179,7 @@ static NSDateFormatter *refreshFormatter;
 			break;
 		case EGOOPullRefreshLoading:
 			
+            NSLog(@"state: EGOOPullRefreshLoading");
 			statusLabel.text = @"Loading...";
 			[activityView startAnimating];
 			[CATransaction begin];
@@ -184,6 +190,7 @@ static NSDateFormatter *refreshFormatter;
 			break;
 		case EGOOPullRefreshUpToDate:
         
+            NSLog(@"state: EGOOPullRefreshUpToDate");
 			statusLabel.text = @"Up-to-date.";
 			[activityView stopAnimating];
 			[CATransaction begin];
@@ -197,6 +204,8 @@ static NSDateFormatter *refreshFormatter;
 	}
 	
 	_state = aState;
+    [self setNeedsDisplay];
+
 }
 
 - (void)dealloc {

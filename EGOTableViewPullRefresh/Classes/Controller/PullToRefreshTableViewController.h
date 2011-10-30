@@ -9,19 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 
-@interface PullToRefreshTableViewController : UIViewController {
+@interface PullToRefreshTableViewController : NSObject {
 	EGORefreshTableHeaderView *refreshHeaderView;
     UITableView *egoTableView;
 	BOOL _reloading;
+    id target;
 }
 
 @property(assign,getter=isReloading) BOOL reloading;
 @property(nonatomic,readonly) EGORefreshTableHeaderView *refreshHeaderView;
 @property(readwrite,retain) UITableView *egoTableView;
+@property(readwrite,retain) id target;
 
-- (void) reloadTableViewDataSource;
 - (void) dataSourceDidFinishLoadingNewData;
 - (void) setupRefreshView;
 - (void) forceRefresh;
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 
 @end
