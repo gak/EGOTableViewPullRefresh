@@ -20,13 +20,16 @@
 #pragma mark View lifecycle
 
 
-- (void) setupRefreshView
+- (void) setupRefreshView:(Class)cls
 {
-    refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - egoTableView.bounds.size.height, 320.0f, egoTableView.bounds.size.height)];
-    refreshHeaderView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-    refreshHeaderView.bottomBorderThickness = 1.0;
+    refreshHeaderView = [[cls alloc] initWithFrame:CGRectMake(0.0f, 0.0f - egoTableView.bounds.size.height, 320.0f, egoTableView.bounds.size.height)];
     [egoTableView addSubview:refreshHeaderView];
     [refreshHeaderView release];
+}
+
+- (void) setupRefreshView
+{
+    [self setupRefreshView:[EGORefreshTableHeaderView class]];
 }
 
 - (void) forceRefresh

@@ -23,6 +23,7 @@
 
 - (void) dataSourceDidFinishLoadingNewData;
 - (void) setupRefreshView;
+- (void) setupRefreshView:(Class)cls;
 - (void) forceRefresh;
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

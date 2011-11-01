@@ -95,7 +95,7 @@ static NSDateFormatter *refreshFormatter;
 		arrowImage = [[CALayer alloc] init];
 		arrowImage.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
 		arrowImage.contentsGravity = kCAGravityResizeAspect;
-		arrowImage.contents = (id)[UIImage imageNamed:@"blueArrow.png"].CGImage;
+		arrowImage.contents = (id)[UIImage imageNamed:@"ptr-down.png"].CGImage;
 		[[self layer] addSublayer:arrowImage];
 		[arrowImage release];
 		
@@ -104,7 +104,10 @@ static NSDateFormatter *refreshFormatter;
 		activityView.hidesWhenStopped = YES;
 		[self addSubview:activityView];
 		[activityView release];
-		
+        
+        self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+        self.bottomBorderThickness = 1.0;
+
     }
     return self;
 }
