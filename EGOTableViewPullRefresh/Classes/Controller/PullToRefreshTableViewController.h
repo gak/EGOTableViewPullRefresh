@@ -11,14 +11,14 @@
 
 @interface PullToRefreshTableViewController : NSObject {
 	EGORefreshTableHeaderView *refreshHeaderView;
-    UITableView *egoTableView;
+    UIScrollView *egoTableView;
 	BOOL _reloading;
     id target;
 }
 
 @property(assign,getter=isReloading) BOOL reloading;
 @property(nonatomic,readonly) EGORefreshTableHeaderView *refreshHeaderView;
-@property(readwrite,retain) UITableView *egoTableView;
+@property(readwrite,retain) UIScrollView *egoTableView;
 @property(readwrite,retain) id target;
 
 - (void) dataSourceDidFinishLoadingNewData;
