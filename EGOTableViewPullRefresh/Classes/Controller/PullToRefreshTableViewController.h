@@ -18,8 +18,8 @@
 
 @property(assign,getter=isReloading) BOOL reloading;
 @property(nonatomic,readonly) EGORefreshTableHeaderView *refreshHeaderView;
-@property(readwrite,retain) UIScrollView *egoTableView;
-@property(readwrite,retain) id target;
+@property(readwrite,assign) UIScrollView *egoTableView;
+@property(readwrite,assign) id target;
 
 - (void) dataSourceDidFinishLoadingNewData;
 - (void) setupRefreshView;
